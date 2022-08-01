@@ -9,7 +9,7 @@ import { TrackService } from './track.service';
   imports: [
     MongooseModule.forFeature([{ name: Track.name, schema: TrackSchema }]),
     MongooseModule.forFeature([{ name: Comment.name, schema: CommentSchema }]),
-],
+  ],
   controllers: [TrackController],
   providers: [TrackService],
 })

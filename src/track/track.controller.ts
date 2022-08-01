@@ -1,12 +1,12 @@
-import { 
-  Controller, 
+import {
+  Controller,
   Get,
-  Post, 
-  Body, 
-  Param, 
-  Delete, 
-  UseInterceptors, 
-  UploadedFiles 
+  Post,
+  Body,
+  Param,
+  Delete,
+  UseInterceptors,
+  UploadedFiles,
 } from '@nestjs/common';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { ObjectId } from 'mongoose';
@@ -29,24 +29,26 @@ export class TrackController {
   }
   @Post('add')
   @UseInterceptors(
-    FileFieldsInterceptor([{
+    FileFieldsInterceptor([
+      {
         name: 'image',
-        maxCount: 1 
+        maxCount: 1,
       },
-      { 
+      {
         name: 'audio',
-        maxCount: 1
+        maxCount: 1,
       },
-    ]))
+    ]),
+  )
   createTrack(
     @Body() dto: CreateTrackDto,
-    @UploadedFiles() 
-    files: { 
-      image?: Express.Multer.File[],
-      audio?: Express.Multer.File[],
-    }
+    @UploadedFiles()
+    files: {
+      image?: Express.Multer.File[];
+      audio?: Express.Multer.File[];
+    },
   ): Promise<Track> {
-    console.log(files, console.log('files'))
+    console.log(files, console.log('files'));
     return this.trackService.createTrack(dto);
   }
   @Delete(':id')
@@ -57,5 +59,4 @@ export class TrackController {
   addComment(@Body() dto: CreateCommentDto): Promise<Comment> {
     return this.trackService.addComment(dto);
   }
-
 }
