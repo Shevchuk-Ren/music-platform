@@ -12,7 +12,6 @@ import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { ObjectId } from 'mongoose';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { CreateTrackDto } from './dto/create-track.dto';
-import { Comment } from './schemas/comment.schema';
 import { Track } from './schemas/tracks.schema';
 import { TrackService } from './track.service';
 
@@ -56,7 +55,7 @@ export class TrackController {
     return this.trackService.deleteTrack(id);
   }
   @Post('comment/add')
-  addComment(@Body() dto: CreateCommentDto): Promise<Comment> {
+  addComment(@Body() dto: CreateCommentDto) {
     return this.trackService.addComment(dto);
   }
 }
