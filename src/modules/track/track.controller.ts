@@ -47,7 +47,6 @@ export class TrackController {
       audio?: Express.Multer.File[];
     },
   ): Promise<Track> {
-    console.log(files, console.log('files'));
     return this.trackService.createTrack(dto);
   }
   @Delete(':id')

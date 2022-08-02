@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
+import { FileService } from './file.service';
 
 @Module({
   controllers: [],
-  providers: [],
+  providers: [FileService],
 })
 export class FileModule {}
