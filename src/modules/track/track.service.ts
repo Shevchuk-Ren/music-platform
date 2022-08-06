@@ -9,11 +9,7 @@ import { Track, TrackDocument } from './schemas/tracks.schema';
 
 @Injectable()
 export class TrackService {
-  constructor(
-    @InjectModel(Track.name) private trackModel: Model<TrackDocument>, 
-    @InjectModel(Comment.name) private commentModel: Model<CommentDocument>, 
-    private fileService: FileService,
-  ) {}
+  constructor(@InjectModel(Track.name) private trackModel: Model<TrackDocument>, @InjectModel(Comment.name) private commentModel: Model<CommentDocument>, private fileService: FileService) {}
   async getAllTracks(count = 10, offset = 0) {
     const tracks = await this.trackModel.find().skip(offset).limit(count);
     return tracks;

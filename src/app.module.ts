@@ -3,7 +3,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
-
 import { AlbumModule } from './modules/album/album.module';
 import { FileModule } from './modules/file/file.module';
 import { TrackModule } from './modules/track/track.module';

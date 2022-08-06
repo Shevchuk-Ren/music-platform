@@ -1,28 +1,23 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Param,
-  Delete,
-  UseInterceptors,
-  UploadedFiles,
-  Query,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, UseInterceptors, UploadedFiles, Query } from '@nestjs/common';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
+import { ApiQuery, ApiTags } from '@nestjs/swagger';
 import { ObjectId } from 'mongoose';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { CreateTrackDto } from './dto/create-track.dto';
 import { Track } from './schemas/tracks.schema';
 import { TrackService } from './track.service';
 
+@ApiTags('tracks')
 @Controller('tracks')
 export class TrackController {
   constructor(private trackService: TrackService) {}
+  @ApiQuery({ name: 'count' })
+  @ApiQuery({ name: 'offset' })
   @Get('all')
   getAllTracks(@Query('count') count: number, @Query('offset') offset: number) {
     return this.trackService.getAllTracks(count, offset);
   }
+  @ApiQuery({ name: 'query' })
   @Get('search')
   searchTrack(@Query('query') query: string): Promise<Track[]> {
     return this.trackService.searchTrack(query);
