@@ -7,7 +7,7 @@ const start = async () => {
     const config = new ConfigService();
     const PORT = config.get('PORT') || 5000;
     const app = await NestFactory.create(AppModule);
-
+    app.enableCors();
     await app.listen(PORT, () => console.log(`Srever started on ${PORT}`));
   } catch (error) {
     console.log(error);
